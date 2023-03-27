@@ -1,0 +1,29 @@
+.task-container {
+	display: flex;
+	margin: 10px 0;
+	width: 65%;
+	height: auto;
+	padding: 10px;
+	border-radius: 20px;
+	border: solid 2px;
+}
+
+.task {
+	width: 85%;
+	height: auto;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font: 3em sans-serif;
+	text-align: center;
+	padding-top: 5px;
+}
+
+.remove-task-button {
+	width: 15%;
+	font: 3em sans-serif;
+	text-align: center;
+	background-color: #ff3333;
+	border-radius: 30px;
+	margin-left: 5px;
+	color: white;
+}
