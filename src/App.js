@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useState } from 'react';
 
 import './App.scss';
@@ -9,12 +9,21 @@ import TaskInput from './components/task-input/task-input.component';
 function App() {
 	const [tasks, setTasks] = useState([]);
 
-	const handleAddTask = (newTask) => {
-		setTasks([...tasks, { id: Date.now(), text: newTask }]);
+	useEffect(() => {
+		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+		setTasks(storedTasks);
+	}, []);
+
+	const handleAddTask = (taskToAdd) => {
+		let newTasks = [...tasks, { id: Date.now(), text: taskToAdd }];
+		setTasks(newTasks);
+		localStorage.setItem('tasks', JSON.stringify(newTasks));
 	};
 
 	const handleRemoveTask = (idToDelete) => {
-		setTasks(tasks.filter((task) => task.id !== idToDelete));
+		const newTasks = tasks.filter((task) => task.id !== idToDelete);
+		setTasks(newTasks);
+		localStorage.setItem('tasks', JSON.stringify(newTasks));
 	};
 
 	return (
